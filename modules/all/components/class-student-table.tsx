@@ -52,7 +52,7 @@ export default function ClassStudentTable() {
           }
 
           return cls.students.map((student, index) => (
-            <TableRow key={`${cls.id}-${index}`}>
+            <TableRow key={index}>
               {index === 0 && (
                 <TableCell
                   rowSpan={studentCount}

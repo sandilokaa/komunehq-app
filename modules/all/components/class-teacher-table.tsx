@@ -53,7 +53,7 @@ export default function ClassTeacherTable() {
           }
 
           return cls.teachers.map((teacher: Teacher, index: number) => (
-            <TableRow key={`${cls.className}-${teacher.teacherNumber}`}>
+            <TableRow key={index}>
               {index === 0 && (
                 <>
                   <TableCell rowSpan={cls.teachers.length}>

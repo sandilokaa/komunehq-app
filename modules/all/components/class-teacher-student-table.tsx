@@ -10,12 +10,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useQuery } from "@tanstack/react-query";
-import { getAllClassStudent } from "../api/get-class-student";
+import { getAllClassTeacherStudent } from "../api/get-class-teacher-student";
 
 export default function ClassTeacherStudentTable() {
   const { data, isLoading, error } = useQuery({
-    queryKey: ["class-students"],
-    queryFn: getAllClassStudent,
+    queryKey: ["class-teachers-students"],
+    queryFn: getAllClassTeacherStudent,
   });
 
   if (isLoading) return <p>Loading class with students...</p>;
