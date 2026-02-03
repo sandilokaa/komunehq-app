@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/table";
 import { useQuery } from "@tanstack/react-query";
 import { getAllClassTeacher } from "../api/get-class-teacher";
+import { Teacher } from "../types/class-teacher-type";
+import { ClassTeacherType } from "../types/class-teacher-type";
 
 export default function ClassTeacherTable() {
   const { data, isLoading, error } = useQuery({
@@ -33,15 +35,13 @@ export default function ClassTeacherTable() {
         </TableRow>
       </TableHeader>
 
-      {/* <TableBody>
-        {data?.map((cls) => {
-          const hasTeacher = cls.teacher !== null;
-
-          if (!hasTeacher) {
+      <TableBody>
+        {data?.map((cls: ClassTeacherType) => {
+          if (!cls.teachers || cls.teachers.length === 0) {
             return (
-              <TableRow key={cls.id}>
-                <TableCell>{cls.class.className}</TableCell>
-                <TableCell>{cls.class.gradeLevel}</TableCell>
+              <TableRow key={cls.className}>
+                <TableCell>{cls.className}</TableCell>
+                <TableCell>{cls.gradeLevel}</TableCell>
                 <TableCell
                   colSpan={3}
                   className="text-center text-muted-foreground"
@@ -52,17 +52,25 @@ export default function ClassTeacherTable() {
             );
           }
 
-          return (
-            <TableRow key={cls.id}>
-              <TableCell>{cls.class.className}</TableCell>
-              <TableCell>{cls.class.gradeLevel}</TableCell>
-              <TableCell>{cls.teacher.fullName}</TableCell>
-              <TableCell>{cls.teacher.subject}</TableCell>
-              <TableCell>{cls.teacher.teacherNumber}</TableCell>
+          return cls.teachers.map((teacher: Teacher, index: number) => (
+            <TableRow key={`${cls.className}-${teacher.teacherNumber}`}>
+              {index === 0 && (
+                <>
+                  <TableCell rowSpan={cls.teachers.length}>
+                    {cls.className}
+                  </TableCell>
+                  <TableCell rowSpan={cls.teachers.length}>
+                    {cls.gradeLevel}
+                  </TableCell>
+                </>
+              )}
+              <TableCell>{teacher.fullName}</TableCell>
+              <TableCell>{teacher.subject}</TableCell>
+              <TableCell>{teacher.teacherNumber}</TableCell>
             </TableRow>
-          );
+          ));
         })}
-      </TableBody> */}
+      </TableBody>
 
       <TableFooter>
         <TableRow>

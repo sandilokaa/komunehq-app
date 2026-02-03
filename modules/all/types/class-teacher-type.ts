@@ -7,6 +7,6 @@ export type Teacher = {
 export type ClassTeacherType = {
   id: number;
   className: string;
-  gradeLevel: string;
-  teacher: Teacher[];
+  gradeLevel: number;
+  teachers: Teacher[];
 };
