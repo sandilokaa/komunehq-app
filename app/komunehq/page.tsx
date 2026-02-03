@@ -5,7 +5,7 @@ import LogoutButton from "@/modules/auth/components/logout-button";
 
 import { useRouter, useSearchParams } from "next/navigation";
 import StudentsContent from "../students/page";
-import TeachersContent from "../teacher/page";
+import TeachersContent from "../teachers/page";
 import ClassContent from "../classes/page";
 import AllContent from "../all/page";
 

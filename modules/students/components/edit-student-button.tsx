@@ -39,7 +39,7 @@ export default function EditStudentButton({ initialData }: Props) {
     register,
     handleSubmit,
     control,
-    formState: { errors },
+    formState: {},
   } = useForm<StudentForm>({
     resolver: zodResolver(StudentSchema),
     defaultValues: {
@@ -69,9 +69,6 @@ export default function EditStudentButton({ initialData }: Props) {
           placeholder="Masukkan fullname"
           {...register("fullName")}
         />
-        {errors.fullName && (
-          <p className="text-sm text-red-500">{errors.fullName.message}</p>
-        )}
       </div>
 
       <div className="flex flex-col gap-2">
@@ -81,9 +78,6 @@ export default function EditStudentButton({ initialData }: Props) {
           placeholder="Masukkan Student Number"
           {...register("studentNumber")}
         />
-        {errors.studentNumber && (
-          <p className="text-sm text-red-500">{errors.studentNumber.message}</p>
-        )}
       </div>
 
       <div className="flex flex-col gap-2">
@@ -112,10 +106,6 @@ export default function EditStudentButton({ initialData }: Props) {
             </Select>
           )}
         />
-
-        {errors.classId && (
-          <p className="text-sm text-red-500">{errors.classId.message}</p>
-        )}
       </div>
 
       <div className="flex items-end">

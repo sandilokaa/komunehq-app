@@ -1,22 +1,22 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { getStudentById } from "@/modules/students/api/get-by-id-student";
-import EditStudentButton from "@/modules/students/components/edit-student-button";
+import { getTeacherById } from "@/modules/teachers/api/get-teacher-by-id";
+import EditTeacherButton from "@/modules/teachers/components/edit-teacher-button";
 import { useQuery } from "@tanstack/react-query";
 import { useParams, useRouter } from "next/navigation";
 
-export default function EditStudentContent() {
+export default function EditTeacherContent() {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["students", id],
-    queryFn: () => getStudentById(id),
+    queryKey: ["teachers", id],
+    queryFn: () => getTeacherById(id),
   });
 
   if (isLoading) return <p>Loading...</p>;
-  if (error || !data) return <p>Student not found</p>;
+  if (error || !data) return <p>Teacher not found</p>;
 
   const handleBack = () => {
     router.back();
@@ -27,9 +27,9 @@ export default function EditStudentContent() {
       <div className="flex flex-col gap-5">
         <div className="flex gap-2 items-center">
           <Button onClick={handleBack}>Back</Button>
-          <p className="font-semibold">Edit Student</p>
+          <p className="font-semibold">Edit Teacher</p>
         </div>
-        <EditStudentButton initialData={data} />
+        <EditTeacherButton initialData={data} />
       </div>
     </div>
   );

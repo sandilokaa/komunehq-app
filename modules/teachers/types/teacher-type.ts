@@ -1,6 +1,7 @@
 export interface TeacherType {
-  id: string;
+  id: number;
   fullName: string;
   subject: string;
   teacherNumber: string;
+  classIds: number[];
 }

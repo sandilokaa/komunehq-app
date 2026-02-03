@@ -77,7 +77,7 @@ export default function ClassStudentTable() {
 
       <TableFooter>
         <TableRow>
-          <TableCell colSpan={4}>Total Class: {data?.length}</TableCell>
+          <TableCell colSpan={4}>Total Row: {data?.length}</TableCell>
         </TableRow>
       </TableFooter>
     </Table>
