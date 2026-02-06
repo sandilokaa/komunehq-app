@@ -8,6 +8,7 @@ import StudentsContent from "../students/page";
 import TeachersContent from "../teachers/page";
 import ClassContent from "../classes/page";
 import AllContent from "../all/page";
+import ParentContent from "../parents/page";
 
 export default function SchoolPage() {
   const router = useRouter();
@@ -51,6 +52,12 @@ export default function SchoolPage() {
           >
             Students
           </TabsTrigger>
+          <TabsTrigger
+            value="parents"
+            className="px-3 py-1 rounded bg-white hover:bg-gray-200"
+          >
+            Parents
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="all">
@@ -64,6 +71,9 @@ export default function SchoolPage() {
         </TabsContent>
         <TabsContent value="students">
           <StudentsContent />
+        </TabsContent>
+        <TabsContent value="parents">
+          <ParentContent />
         </TabsContent>
       </Tabs>
     </div>

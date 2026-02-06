@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { StudentForm, StudentSchema } from "../schemas/student-schemas";
 import { addStudent } from "../api/add-student";
+import { getAllParent } from "@/modules/parents/api/get-all-parent";
 
 export default function AddStudentButton() {
   const router = useRouter();
@@ -22,6 +23,11 @@ export default function AddStudentButton() {
   const { data: classes } = useQuery({
     queryKey: ["classes"],
     queryFn: getAllClass,
+  });
+
+  const { data: parents } = useQuery({
+    queryKey: ["parents"],
+    queryFn: getAllParent,
   });
 
   const {
@@ -80,6 +86,28 @@ export default function AddStudentButton() {
             {classes?.map((cls) => (
               <SelectItem key={cls.id} value={cls.id.toString()}>
                 {cls.className}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <Label htmlFor="parentId">Parent</Label>
+        <Select
+          onValueChange={(value) =>
+            setValue("parentId", Number(value), {
+              shouldValidate: true,
+            })
+          }
+        >
+          <SelectTrigger className="w-45">
+            <SelectValue placeholder="Choose Parent" />
+          </SelectTrigger>
+          <SelectContent className="z-50" position="popper">
+            {parents?.map((prt) => (
+              <SelectItem key={prt.id} value={prt.id.toString()}>
+                {prt.fullName}
               </SelectItem>
             ))}
           </SelectContent>
